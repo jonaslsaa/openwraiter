@@ -196,7 +196,6 @@ function initAutoComplete() {
                     thisTextInput.val(textInputValue.substring(0, currentPosition) + firstAutocomplete + textInputValue.substring(currentPosition));
                     currentAutoComplete = firstAutocomplete;
                     currentlyShowingSuggestion = true;
-                    setTextCSSAlpha(thisTextInput, '0.5');
                     
                     // set cursor to before autocomplete
                     thisTextInput.selectRange(currentPosition, currentPosition + firstAutocomplete.length);
