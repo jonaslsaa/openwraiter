@@ -56,14 +56,14 @@ function testOpenAIKey(apiKey) {
     success: function(data) {
         console.log("Success!");
         console.log(data);
-        chrome.storage.local.set({'enabled': true});
+        chrome.storage.sync.set({'enabled': true});
         setUIStatus(true);
 
         incrementCallsToday();
     },
     error: function(data) {
         console.log("Error: " + data.responseText);
-        chrome.storage.local.set({'enabled': false});
+        chrome.storage.sync.set({'enabled': false});
         setUIStatus(false);
     }
     });
@@ -77,7 +77,7 @@ chrome.storage.local.get(['calls-today']).then(function(result) {
     callsTodayText.text(calls);
 });
 
-chrome.storage.local.get(['model-name']).then(function(result) {
+chrome.storage.sync.get(['model-name']).then(function(result) {
     let modelName = result['model-name'];
     if (modelName) {
         let modelCapitalized = modelName.charAt(0).toUpperCase() + modelName.slice(1);
@@ -86,7 +86,7 @@ chrome.storage.local.get(['model-name']).then(function(result) {
 });
 
 // set api key if it is stored in local storage
-chrome.storage.local.get(['apiKey', 'enabled']).then(function(result) {
+chrome.storage.sync.get(['apiKey', 'enabled']).then(function(result) {
     let gotApiKey = result.apiKey;
     let enabled = result.enabled;
     
@@ -96,7 +96,7 @@ chrome.storage.local.get(['apiKey', 'enabled']).then(function(result) {
             setUIStatus(true);
         }
     } else {
-        chrome.storage.local.set({'enabled': false});
+        chrome.storage.sync.set({'enabled': false});
         setUIStatus(false);
     }
 });
@@ -108,7 +108,7 @@ statusButton.click(function() {
     // TODO: add toggle for force enabled/disabled
     if(apiKeyInput.val() !== '') {
         let apiKey = apiKeyInput.val().trim();
-        chrome.storage.local.set({'apiKey': apiKey});
+        chrome.storage.sync.set({'apiKey': apiKey});
         testOpenAIKey(apiKey);
     }
 });
@@ -122,8 +122,8 @@ for (let dropdownModelSelect of dropdownModelSelects) {
         let modelCapitalized = modelName.charAt(0).toUpperCase() + modelName.slice(1);
         $('#model-name').text(modelCapitalized);
 
-        chrome.storage.local.set({'model-name': modelName});
-        chrome.storage.local.set({'model-value': modelValue});
+        chrome.storage.sync.set({'model-name': modelName});
+        chrome.storage.sync.set({'model-value': modelValue});
     });
 }
 

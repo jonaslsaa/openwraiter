@@ -3,8 +3,8 @@ var apiKey = '';
 var modelName = '';
 var modelCodename = '';
 
-// get enabled and apiKey
-chrome.storage.local.get(['enabled', 'apiKey', 'model-name', 'model-value']).then(function(result) {
+// get sync data
+chrome.storage.sync.get(['enabled', 'apiKey', 'model-name', 'model-value']).then(function(result) {
     enabled = result.enabled;
     apiKey = result.apiKey;
     modelName = result['model-name'].trim();
@@ -19,7 +19,12 @@ chrome.storage.local.get(['enabled', 'apiKey', 'model-name', 'model-value']).the
         console.log(apiKey);
         console.log(enabled);
     }
-    initAutoComplete();
+
+    $(document).ready(function() {
+        setTimeout(function() {
+            initAutoComplete();
+        }, 1000);
+    });
 });
 
 // listener for storage changes
@@ -152,6 +157,7 @@ function initAutoComplete() {
     // find all text input and text areas with jquery
     var textInputs = [];
     textInputs.push(...$('input[type=text], textarea'));
+    //TODO: consider, get all contenteditables, but: https://stackoverflow.com/questions/45632580/keyup-event-on-contenteditable-div 
     var typingTimeout;
 
     // on keyup, wait N ms and get autocomplete
