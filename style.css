@@ -1,0 +1,28 @@
+.primary-title {
+  font-size: 1.5em;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+  color: rgb(134, 199, 243);
+  text-shadow: 0 0 0.5em rgb(4, 5, 5);
+}
+
+.status-text {
+    margin-left : 1.25em;
+}
+
+.dropdown-menu {
+  background-color: #131316;
+}
+
+.form-control {
+    background-color: #131316;
+    margin-bottom: 0.5em;
+}
+
+
+.small-info-text {
+    font-size: 0.8em;
+    color: #505260; 
+    /* Align this text to the right inside div*/
+    margin-left: 4em;
+}
