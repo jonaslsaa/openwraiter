@@ -75,8 +75,8 @@ function doAPICompletion(context_text){
         },
         data: JSON.stringify({
             prompt: context_text,
-            temperature: 0.2, // this might need to be adjusted
-            max_tokens: 64 // this might need to be adjusted
+            temperature: 0.1, // this might need to be adjusted
+            max_tokens: 32 // this might need to be adjusted
         }),
         success: function(data) {
             return data.choices[0].text;
@@ -151,6 +151,8 @@ function fake_getAutocomplete(context_text) {
         resolve(obj);
     });
 }
+
+//TODO: https://stackoverflow.com/questions/5759130/google-chrome-extension-numbers-on-the-icon
 
 function initAutoComplete() {
 

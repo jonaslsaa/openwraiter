@@ -1,7 +1,7 @@
 {
     "name": "Openwraiter",
-    "version": "1.0.0",
-    "description": "Autocompletion for OpenAI API",
+    "version": "0.1.0",
+    "description": "Autocompletion on the web using OpenAI API",
     "manifest_version": 3,
     "author": "Jonas Silva",
     "icons": {
